@@ -1,7 +1,7 @@
 ---
 - name: Gather and display system information
   hosts: all
-  gather_facts: yes  # Enables gathering of facts about remote systems
+  gather_facts: yes
 
   tasks:
     - name: Display basic system information
@@ -22,5 +22,5 @@
 
     - name: Display disk space information
       debug:
-        msg: "Mount {{ item.mount }} - Free: {{ item.size_free }} / Total: {{ item.size_total }}"
+        msg: "Mount {{ item.mount }} - Free: {{ item.size_available }} / Total: {{ item.size_total }}"
       loop: "{{ ansible_mounts }}"
