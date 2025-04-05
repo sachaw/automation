@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: false
+
+  roles:
+    - role: robertdebock.consul
+      consul_bootstrap_expect: 1
+      consul_encrypt: {{ CONSUL_ENCRYPT }}
+      consul_bind_addr: "0.0.0.0"
+      consul_services:
+        - name: web
+          tags:
+            - rails
+          port: 80
