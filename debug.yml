@@ -1,0 +1,26 @@
+---
+- name: Gather and display system information
+  hosts: all
+  gather_facts: yes  # Enables gathering of facts about remote systems
+
+  tasks:
+    - name: Display basic system information
+      debug:
+        msg:
+          - "Hostname: {{ ansible_hostname }}"
+          - "OS Family: {{ ansible_os_family }}"
+          - "Distribution: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+          - "Kernel: {{ ansible_kernel }}"
+          - "Architecture: {{ ansible_architecture }}"
+          - "CPU Count: {{ ansible_processor_vcpus }}"
+          - "Memory Total (MB): {{ ansible_memtotal_mb }}"
+          - "IP Address: {{ ansible_default_ipv4.address }}"
+
+    - name: Show current date and time on host
+      debug:
+        msg: "Current date/time: {{ ansible_date_time.iso8601 }}"
+
+    - name: Display disk space information
+      debug:
+        msg: "Mount {{ item.mount }} - Free: {{ item.size_free }} / Total: {{ item.size_total }}"
+      loop: "{{ ansible_mounts }}"
