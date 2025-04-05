@@ -1,6 +1,6 @@
 ---
 - name: Prepare
-  hosts: cluster
+  hosts: [controll_plane, worker]
   become: true
   gather_facts: false
 
