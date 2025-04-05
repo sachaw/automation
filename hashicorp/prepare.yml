@@ -1,6 +1,6 @@
 ---
 - name: Prepare
-  hosts: all
+  hosts: cluster
   become: true
   gather_facts: false
 
